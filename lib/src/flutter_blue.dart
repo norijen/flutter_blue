@@ -142,6 +142,11 @@ class FlutterBlue {
       return result;
     });
   }
+  
+  Future<List<BluetoothDevice>> getBondedDevices() async {
+    final List list = await _channel.invokeMethod('getBondedDevices');
+    return list.map((map) => BluetoothDevice.fromMap(map)).toList();
+  }
 
   /// Starts a scan and returns a future that will complete once the scan has finished.
   ///
